@@ -1,9 +1,16 @@
 #include <QApplication>
-#include <QDebug>
+#include <QMainWindow>
+#include <QLabel>
 
-using namespace std;
+int main(int argc, char *argv[]){
+    QApplication app(argc, argv);
+    QMainWindow *mw = new QMainWindow;
+    QLabel *ql = new QLabel;
 
-int main() {
-    qDebug() << QT_VERSION_STR;
-    return 1;
+    ql->setText("Its a project.");
+
+    mw->setCentralWidget(ql);
+    mw->setWindowTitle("Hello!");
+    mw->show();
+    return app.exec();
 }
