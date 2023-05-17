@@ -1,4 +1,7 @@
 #include <vector>
+#include <filesystem>
+#include <fstream>
+#include <unordered_set>
 #include "card.cpp"
 using namespace std;
 
@@ -22,11 +25,64 @@ struct CardMatchGame {
         second_clicked = nullptr;
 
         card_grid = vector<vector<Card>> (height, vector<Card>(width, Card("empty")));
+        srand(static_cast<unsigned int>(std::time(nullptr)));
 
         initialize_cards();
     }
 
-    void initialize_cards();
+    void initialize_cards(){
+        vector<string> resource_files;
+        for (auto const& dir_entry : filesystem::directory_iterator{"../resources"})
+        {
+            resource_files.push_back(dir_entry.path().string());
+        }
+
+        int randomIndex = rand() % resource_files.size();
+        string random_resource_file = resource_files[randomIndex];
+
+        ifstream inputFile(random_resource_file);
+
+        vector<string> total_words;
+        string word;
+
+        while (inputFile >> word) {
+            total_words.push_back(word);
+        }
+
+        inputFile.close();
+
+        unordered_set<int> randomIndices;
+        while (randomIndices.size() < height * width / 2) {
+            int index = rand() % total_words.size();
+            randomIndices.insert(index);
+        }
+
+        vector<pair<string,int>> selected_words;
+        selected_words.reserve(randomIndices.size());
+        for (int i : randomIndices){
+            selected_words.emplace_back(total_words[i], 0);
+        }
+
+        vector<pair<int,int>> grid_indices;
+
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
+                grid_indices.emplace_back(i,j);
+            }
+        }
+
+        while (!grid_indices.empty()){
+            int index = rand() % grid_indices.size();
+            pair<int,int> selected_grid_location = grid_indices[index];
+            if(selected_words.back().second == 2){
+                selected_words.pop_back();
+            }
+            card_grid[selected_grid_location.first][selected_grid_location.second].content = selected_words.back().first;
+            selected_words.back().second++;
+            grid_indices.erase(grid_indices.begin() + index);
+        }
+
+    };
 
     bool end() const {
         return remaining_tries <= 0;
