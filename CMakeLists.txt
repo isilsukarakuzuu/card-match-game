@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(test)
+project(cmpe230-p3)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
@@ -15,8 +15,8 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(test src/main.cpp)
-target_link_libraries(test
+add_executable(cmpe230-p3 src/main.cpp src/card_match.cpp src/card.cpp)
+target_link_libraries(cmpe230-p3
         Qt::Core
         Qt::Gui
         Qt::Widgets
