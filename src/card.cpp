@@ -1,3 +1,5 @@
+#ifndef CARD
+#define CARD
 #include <string>
 #include <utility>
 using namespace std;
@@ -22,3 +24,5 @@ struct Card {
     }
 
 };
+
+#endif
