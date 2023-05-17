@@ -32,31 +32,32 @@ struct CardMatchGame {
         return remaining_tries <= 0;
     }
 
-    bool clickable(Card& card) const {
+    bool clickable(int row, int column) {
+        Card& card = card_grid[row][column];
         if(end()) return false;
         if(!card.active) return false;
         if(card.clicked) return false;
         return true;
     }
 
-    bool click(int row, int column) {
+    void click(int row, int column) {
         Card& card = card_grid[row][column];
 
-        if(!clickable(card)) throw "Card is not clickable";
+        if(!clickable(row, column)) throw "Card is not clickable";
 
         card.setClicked(true);
 
         if(first_clicked == nullptr) {
             first_clicked = &card;
-            return false;
         }
         else {
             second_clicked = &card;
-            return true;
         }
     }
 
     void match() {
+        if(first_clicked == nullptr || second_clicked == nullptr) return;
+
         first_clicked->setClicked(false);
         second_clicked->setClicked(false);
 

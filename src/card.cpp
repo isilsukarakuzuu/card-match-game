@@ -10,7 +10,7 @@ struct Card {
 
     explicit Card(string _content) {
         content = std::move(_content);
-        active = false;
+        active = true;
         clicked = false;
     }
 
