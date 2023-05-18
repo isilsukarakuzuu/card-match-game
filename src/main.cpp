@@ -1,39 +1,36 @@
 #include <iostream>
 #include "card_match.cpp"
+#include "main_window.cpp"
 #include <QApplication>
-#include <QMainWindow>
-#include <QLabel>
+
 using namespace std;
 
 int main(int argc, char *argv[]){
+
     CardMatchGame game;
     game.initialize_cards();
 
-    while(!game.end()){
-        int row, column;
-        cin >> row >> column;
-        if(game.clickable(row, column)) {
+    QApplication app(argc, argv);
+    CardMatchMainWindow *main_window = new CardMatchMainWindow(game);
+    main_window->show();
 
-            game.click(row, column);
-            game.match();
-
-            cout << game.card_grid[row][column].content << endl;
-            cerr << "Score: " << game.score << endl;
-            cerr << "Remaining tries: " << game.remaining_tries << endl;
-
-        }
-        else {
-            cerr << "Card is not clickable" << endl;
-        }
-    }
-//    QApplication app(argc, argv);
-//    QMainWindow *mw = new QMainWindow;
-//    QLabel *ql = new QLabel;
+//    while(!game.end()){
+//        int row, column;
+//        cin >> row >> column;
+//        if(game.clickable(row, column)) {
 //
-//    ql->setText("Its a project.");
+//            game.click(row, column);
+//            game.match();
 //
-//    mw->setCentralWidget(ql);
-//    mw->setWindowTitle("Hello!");
-//    mw->show();
-//    return app.exec();
+//            cout << game.card_grid[row][column].content << endl;
+//            cerr << "Score: " << game.score << endl;
+//            cerr << "Remaining tries: " << game.remaining_tries << endl;
+//
+//        }
+//        else {
+//            cerr << "Card is not clickable" << endl;
+//        }
+//    }
+
+    return app.exec();
 }

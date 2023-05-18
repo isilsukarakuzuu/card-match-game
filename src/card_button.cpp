@@ -5,7 +5,7 @@ using namespace std;
 
 class CardButton : public QPushButton {
 public:
-    explicit CardButton(Card card, QWidget* parent) : QPushButton(parent) {
+    explicit CardButton(Card& card, QWidget* parent = nullptr) : QPushButton(parent) {
         QPalette pal = palette();
         setEnabled(card.active && !card.clicked);
         if(card.clicked){

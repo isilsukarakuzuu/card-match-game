@@ -15,7 +15,7 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(cmpe230-p3 src/main.cpp src/card_match.cpp src/card.cpp)
+add_executable(cmpe230-p3 src/main.cpp src/card_match.cpp src/card.cpp src/main_window.cpp src/grid_layout.cpp src/card_button.cpp)
 target_link_libraries(cmpe230-p3
         Qt::Core
         Qt::Gui

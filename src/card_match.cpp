@@ -1,3 +1,6 @@
+#ifndef CARD_MATCH_CPP
+#define CARD_MATCH_CPP
+
 #include <vector>
 #include <filesystem>
 #include <fstream>
@@ -131,3 +134,5 @@ struct CardMatchGame {
     }
 
 };
+
+#endif //CARD_MATCH_CPP
