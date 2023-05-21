@@ -12,6 +12,7 @@ class MainGameWindow : public QWidget
 
 public:
     explicit MainGameWindow(QWidget *parent = nullptr);
+    void setScoreAndTries();
 
 private slots:
     void startNewGame();
@@ -23,6 +24,7 @@ private:
     QPushButton *newGameButton;
     GridLayout *gridLayout;
     QHBoxLayout *topLayout;
+    std::vector<std::vector<QString>> cardGrid;
 };
 
 #endif // MAINGAMEWINDOW_H

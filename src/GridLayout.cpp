@@ -1,7 +1,8 @@
 #include "../include/GridLayout.h"
+#include "../include/MainGameWindow.h"
 
-GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString> > &cardGrid, int height, int width)
-: QWidget(parent), cardGrid(cardGrid), height(height), width(width)
+GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString> > &cardGrid, int height, int width, int score, int tries)
+    : QWidget(parent), cardGrid(cardGrid), height(height), width(width), score(score), tries(tries)
 {
     layout = new QGridLayout(this);
     for (int i = 0; i < height; i++){
@@ -17,6 +18,8 @@ GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString> > &card
 
 void GridLayout::build()
 {
+    score = 0;
+    tries = 50;
     first_clicked = nullptr;
     second_clicked = nullptr;
     match_timer = new QTimer(this);
@@ -50,7 +53,7 @@ void GridLayout::match() {
         second_clicked->deactivate();
         first_clicked->deactivate();
 
-//        score++;
+        score++;
     }
     else {
         first_clicked->unclick();
@@ -60,5 +63,9 @@ void GridLayout::match() {
     first_clicked = nullptr;
     second_clicked = nullptr;
 
-//    remaining_tries--;
+    tries--;
+    MainGameWindow* mainGameWindow = (MainGameWindow*)parent();
+
+    mainGameWindow->setScoreAndTries();
+
 }
