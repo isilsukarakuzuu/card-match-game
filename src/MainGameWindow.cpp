@@ -1,13 +1,11 @@
 #include "../include/MainGameWindow.h"
-#include "../include/Shuffle.h"
 
 MainGameWindow::MainGameWindow(QWidget *parent) : QWidget(parent)
 {
-    cardGrid = getShuffledWords(5, 6);
     scoreLabel = new QLabel("", this);
     triesLabel = new QLabel("", this);
     newGameButton = new QPushButton("New Game", this);
-    gridLayout = new GridLayout(this, cardGrid);
+    gridLayout = new GridLayout(this);
     topLayout = new QHBoxLayout();
 
     setScoreAndTries();
@@ -32,7 +30,6 @@ void MainGameWindow::setScoreAndTries()
 
 void MainGameWindow::startNewGame()
 {
-    cardGrid = getShuffledWords(5, 6);
     gridLayout->build();
     setScoreAndTries();
 }

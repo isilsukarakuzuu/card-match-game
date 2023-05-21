@@ -1,8 +1,9 @@
 #include "../include/GridLayout.h"
 #include "../include/MainGameWindow.h"
+#include "../include/Shuffle.h"
 
-GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString> > &cardGrid, int height, int width, int score, int tries)
-    : QWidget(parent), cardGrid(cardGrid), height(height), width(width), score(score), tries(tries)
+GridLayout::GridLayout(QWidget *parent, int height, int width, int score, int tries)
+    : QWidget(parent), height(height), width(width), score(score), tries(tries)
 {
     layout = new QGridLayout(this);
     for (int i = 0; i < height; i++){
@@ -23,6 +24,8 @@ void GridLayout::build()
     first_clicked = nullptr;
     second_clicked = nullptr;
     match_timer = new QTimer(this);
+
+    cardGrid = getShuffledWords(height, width);
 
     for (int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
