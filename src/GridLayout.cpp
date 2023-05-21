@@ -39,7 +39,7 @@ void GridLayout::click(CardButton *button) {
     }
     else if (second_clicked == nullptr){
         second_clicked = button;
-        QTimer::singleShot(1000, this, &GridLayout::match);
+        QTimer::singleShot(750, this, &GridLayout::match);
     }
 }
 
