@@ -10,13 +10,19 @@ class GridLayout : public QWidget
     Q_OBJECT
 
 public:
+    CardButton* first_clicked;
+    CardButton* second_clicked;
+
     explicit GridLayout(QWidget *parent, std::vector<std::vector<QString>>& cardGrid, int height = 5, int width = 6);
     void build();
+    void click(CardButton* button);
+    void match();
 
 private:
-    int height, width;
     QGridLayout *layout;
     std::vector<std::vector<QString>>& cardGrid;
+    int height;
+    int width;
 };
 
 #endif // GRIDLAYOUT_H

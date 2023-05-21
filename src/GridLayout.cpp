@@ -6,7 +6,7 @@ GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString> > &card
     layout = new QGridLayout(this);
     for (int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
-            CardButton *button = new CardButton(this, QString("               "));
+            CardButton *button = new CardButton(this);
             layout->addWidget(button, i, j);
         }
     }
@@ -15,6 +15,9 @@ GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString> > &card
 
 void GridLayout::build()
 {
+    first_clicked = nullptr;
+    second_clicked = nullptr;
+
     for (int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
             QString strValue = cardGrid[i][j];
@@ -24,4 +27,35 @@ void GridLayout::build()
         }
     }
     setLayout(layout);
+}
+
+void GridLayout::click(CardButton *button) {
+    button->clicked = true;
+
+    if(first_clicked == nullptr) {
+        first_clicked = button;
+    }
+    else {
+        second_clicked = button;
+    }
+}
+
+void GridLayout::match() {
+    if(first_clicked == nullptr || second_clicked == nullptr) return;
+
+    if(first_clicked->buttonText == second_clicked->buttonText) {
+        second_clicked->deactivate();
+        first_clicked->deactivate();
+
+//        score++;
+    }
+    else {
+        first_clicked->unclick();
+        second_clicked->unclick();
+    }
+
+    first_clicked = nullptr;
+    second_clicked = nullptr;
+
+//    remaining_tries--;
 }

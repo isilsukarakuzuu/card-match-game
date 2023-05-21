@@ -9,9 +9,15 @@ class CardButton : public QPushButton
 
 public:
     QString buttonText;
-    explicit CardButton(QWidget *parent = nullptr, QString text = "");
+    bool active;
+    bool clicked;
+    explicit CardButton(QWidget *parent = nullptr);
+    void resetButton();
+    void unclick();
+    void deactivate();
+
 private slots:
-    void displayText();
+    void click();
 
 
 };
