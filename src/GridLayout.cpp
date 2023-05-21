@@ -11,12 +11,15 @@ GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString> > &card
         }
     }
     build();
+
+    connect(match_timer, &QTimer::timeout, this, &match);
 }
 
 void GridLayout::build()
 {
     first_clicked = nullptr;
     second_clicked = nullptr;
+    match_timer = new QTimer(this);
 
     for (int i = 0; i < height; i++){
         for(int j = 0; j < width; j++){
@@ -37,6 +40,8 @@ void GridLayout::click(CardButton *button) {
     }
     else {
         second_clicked = button;
+
+        QTimer::singleShot(1000, this, &match);
     }
 }
 
