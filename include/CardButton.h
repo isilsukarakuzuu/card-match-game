@@ -13,6 +13,7 @@ public:
     bool clicked;
     explicit CardButton(QWidget *parent = nullptr);
     void resetButton();
+    bool clickable();
     void unclick();
     void deactivate();
 

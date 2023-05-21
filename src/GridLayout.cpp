@@ -12,7 +12,7 @@ GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString> > &card
     }
     build();
 
-    connect(match_timer, &QTimer::timeout, this, &match);
+    connect(match_timer, &QTimer::timeout, this, &GridLayout::match);
 }
 
 void GridLayout::build()
@@ -26,22 +26,20 @@ void GridLayout::build()
             QString strValue = cardGrid[i][j];
             CardButton *button = (CardButton*)layout->itemAtPosition(i, j)->widget();
             button->buttonText = strValue;
-            button->setText(QString("               "));
+            button->resetButton();
         }
     }
     setLayout(layout);
 }
 
 void GridLayout::click(CardButton *button) {
-    button->clicked = true;
 
     if(first_clicked == nullptr) {
         first_clicked = button;
     }
-    else {
+    else if (second_clicked == nullptr){
         second_clicked = button;
-
-        QTimer::singleShot(1000, this, &match);
+        QTimer::singleShot(1000, this, &GridLayout::match);
     }
 }
 

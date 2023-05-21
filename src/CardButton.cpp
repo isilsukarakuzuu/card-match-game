@@ -8,24 +8,40 @@ CardButton::CardButton(QWidget *parent) : QPushButton(parent){
 }
 
 void CardButton::resetButton() {
-    buttonText = QString("               ");
+    setText(QString("               "));
     active = true;
     clicked = false;
+    setEnabled(true);
 }
 
-void CardButton::click()
-{
-    if(!active && clicked) return;
+bool CardButton::clickable() {
     GridLayout* grid = (GridLayout*)parent();
-    grid->click(this);
+
+    if(!active || clicked) return false;
+    if(grid->first_clicked == this) return false;
+    if(grid->second_clicked == this) return false;
+    if(grid->first_clicked != nullptr && grid->second_clicked != nullptr) return false;
+    return true;
+
+}
+
+void CardButton::click() {
+    if(!clickable()) return;
+
+    GridLayout* grid = (GridLayout*)parent();
+
+    clicked = true;
     setText(buttonText);
+    grid->click(this);
 }
 
 void CardButton::unclick() {
-
+    clicked = false;
+    setText(QString("               "));
 }
 
 void CardButton::deactivate() {
-
+    active = false;
+    setEnabled(false);
 }
 
