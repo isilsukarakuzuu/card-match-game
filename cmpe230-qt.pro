@@ -1,19 +1,16 @@
 QT += widgets
 
 SOURCES += \
-    CardButton.cpp \
-    GridLayout.cpp \
-    MainGameWindow.cpp \
-    Shuffle.cpp \
+    src/CardButton.cpp \
+    src/GridLayout.cpp \
+    src/MainGameWindow.cpp \
+    src/Shuffle.cpp \
     main.cpp
 
 HEADERS += \
-    CardButton.h \
-    GridLayout.h \
-    MainGameWindow.h \
-    Shuffle.h
+    include/CardButton.h \
+    include/GridLayout.h \
+    include/MainGameWindow.h \
+    include/Shuffle.h
 
-DISTFILES += \
-    animals.txt \
-    countries.txt \
-    fruits.txt \
+RESOURCES = resources.qrc

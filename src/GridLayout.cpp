@@ -1,6 +1,6 @@
-#include "GridLayout.h"
+#include "../include/GridLayout.h"
 
-GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString>> cardGrid) : QWidget(parent), cardGrid(cardGrid)
+GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString>>& cardGrid) : QWidget(parent), cardGrid(cardGrid)
 {
     layout = new QGridLayout(this);
     build();

@@ -1,12 +1,12 @@
-#include "Shuffle.h"
+#include "../include/Shuffle.h"
 
 std::vector<std::vector<QString>> getShuffledWords(int height, int width)
 {
     std::vector<std::vector<QString>> cardGrid(height, std::vector<QString>(width));
 
-    std::vector<std::string> resource_files = {"D:/boun-cmpe/cmpe230/cmpe230-p3/animals.txt",
-                                               "D:/boun-cmpe/cmpe230/cmpe230-p3/countries.txt",
-                                               "D:/boun-cmpe/cmpe230/cmpe230-p3/fruits.txt"};
+    std::vector<std::string> resource_files = {"D:/boun-cmpe/cmpe230/cmpe230-p3/resources/animals.txt",
+                                               "D:/boun-cmpe/cmpe230/cmpe230-p3/resources/countries.txt",
+                                               "D:/boun-cmpe/cmpe230/cmpe230-p3/resources/fruits.txt"};
     srand(time(0));
 
     int randomIndex = rand() % 3;

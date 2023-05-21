@@ -1,4 +1,4 @@
-#include "CardButton.h"
+#include "../include/CardButton.h"
 #include <QMessageBox>
 
 CardButton::CardButton(QWidget *parent, QString text) : QPushButton(parent), buttonText(text){

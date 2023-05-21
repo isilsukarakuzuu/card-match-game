@@ -1,13 +1,11 @@
-#include "MainGameWindow.h"
-#include "Shuffle.h"
+#include "../include/MainGameWindow.h"
+#include "../include/Shuffle.h"
 
 std::vector<std::vector<QString>> cardGrid;
 
 MainGameWindow::MainGameWindow(QWidget *parent) : QWidget(parent)
 {
-
     cardGrid = getShuffledWords(5, 6);
-
     scoreLabel = new QLabel("Score: 0", this);
     triesLabel = new QLabel("Tries: 50", this);
     newGameButton = new QPushButton("New Game", this);
@@ -32,5 +30,4 @@ void MainGameWindow::startNewGame()
 {
     cardGrid = getShuffledWords(5, 6);
     gridLayout->build();
-    //show();
 }
