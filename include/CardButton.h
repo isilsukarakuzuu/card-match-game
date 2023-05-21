@@ -8,13 +8,12 @@ class CardButton : public QPushButton
     Q_OBJECT
 
 public:
+    QString buttonText;
     explicit CardButton(QWidget *parent = nullptr, QString text = "");
-
 private slots:
     void displayText();
 
-private:
-    QString buttonText;
+
 };
 
 #endif // CARDBUTTON_H

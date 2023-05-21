@@ -1,20 +1,26 @@
 #include "../include/GridLayout.h"
 
-GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString>>& cardGrid) : QWidget(parent), cardGrid(cardGrid)
+GridLayout::GridLayout(QWidget *parent, std::vector<std::vector<QString> > &cardGrid, int height, int width)
+: QWidget(parent), cardGrid(cardGrid), height(height), width(width)
 {
     layout = new QGridLayout(this);
+    for (int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            CardButton *button = new CardButton(this, QString("               "));
+            layout->addWidget(button, i, j);
+        }
+    }
     build();
 }
 
 void GridLayout::build()
 {
-    for (int i = 0; i < 5; i++){
-        for(int j = 0; j < 6; j++){
+    for (int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
             QString strValue = cardGrid[i][j];
-            CardButton *button = new CardButton(this, strValue);
+            CardButton *button = (CardButton*)layout->itemAtPosition(i, j)->widget();
+            button->buttonText = strValue;
             button->setText(QString("               "));
-            buttons.append(button);
-            layout->addWidget(button, i, j);
         }
     }
     setLayout(layout);
