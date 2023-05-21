@@ -22,6 +22,7 @@ public:
     explicit GridLayout(QWidget *parent, int height = 5, int width = 6, int score = 0, int tries = 50);
     void build();
     void click(CardButton* button);
+    void openAllCards();
 
 public slots:
     void match();

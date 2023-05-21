@@ -1,10 +1,10 @@
 #ifndef MAINGAMEWINDOW_H
 #define MAINGAMEWINDOW_H
-
 #include "GridLayout.h"
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
+#include <QMessageBox>
 
 class MainGameWindow : public QWidget
 {
@@ -13,6 +13,8 @@ class MainGameWindow : public QWidget
 public:
     explicit MainGameWindow(QWidget *parent = nullptr);
     void setScoreAndTries();
+    void winGame();
+    void loseGame();
 
 private slots:
     void startNewGame();

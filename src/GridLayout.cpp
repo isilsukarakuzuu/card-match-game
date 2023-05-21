@@ -79,3 +79,14 @@ void GridLayout::match() {
         mainGameWindow->loseGame();
     }
 }
+
+void GridLayout::openAllCards()
+{
+    for (int i = 0; i < height; i++){
+        for(int j = 0; j < width; j++){
+            CardButton *button = (CardButton*)layout->itemAtPosition(i, j)->widget();
+            button->setText(button->buttonText);
+            button->setEnabled(false);
+        }
+    }
+}

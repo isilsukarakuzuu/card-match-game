@@ -33,3 +33,14 @@ void MainGameWindow::startNewGame()
     gridLayout->build();
     setScoreAndTries();
 }
+
+void MainGameWindow::winGame()
+{
+    QMessageBox::information(this, "Congratulations", "You Won!");
+}
+
+void MainGameWindow::loseGame()
+{
+    gridLayout->openAllCards();
+    QMessageBox::information(this, "Game Over", "You Lose!");
+}
