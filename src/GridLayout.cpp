@@ -64,8 +64,15 @@ void GridLayout::match() {
     second_clicked = nullptr;
 
     tries--;
-    MainGameWindow* mainGameWindow = (MainGameWindow*)parent();
 
+    MainGameWindow* mainGameWindow = (MainGameWindow*)parent();
     mainGameWindow->setScoreAndTries();
 
+
+    if(score == height * width / 2) {
+        mainGameWindow->winGame();
+    }
+    if(tries == 0) {
+        mainGameWindow->loseGame();
+    }
 }
