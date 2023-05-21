@@ -1,27 +1,30 @@
 #include "../include/Shuffle.h"
+#include <QFile>
+#include <QTextStream>
 
 std::vector<std::vector<QString>> getShuffledWords(int height, int width)
 {
     std::vector<std::vector<QString>> cardGrid(height, std::vector<QString>(width));
 
-    std::vector<std::string> resource_files = {"D:/boun-cmpe/cmpe230/cmpe230-p3/resources/animals.txt",
-                                               "D:/boun-cmpe/cmpe230/cmpe230-p3/resources/countries.txt",
-                                               "D:/boun-cmpe/cmpe230/cmpe230-p3/resources/fruits.txt"};
+    std::vector<QString> resource_files = {QString(":/resources/animals.txt"),
+                                               QString(":/resources/countries.txt"),
+                                               QString(":/resources/fruits.txt")};
     srand(time(0));
 
     int randomIndex = rand() % 3;
-    std::string random_resource_file = resource_files[randomIndex];
+    QFile random_resource_file(resource_files[randomIndex]);
+    random_resource_file.open(QFile::ReadOnly);
 
-    std::ifstream inputFile(random_resource_file);
+    QTextStream inputFile(&random_resource_file);
 
     std::vector<std::string> total_words;
-    std::string word;
+    QString word;
 
-    while (inputFile >> word) {
-        total_words.push_back(word);
+    while (inputFile.readLineInto(&word)) {
+        total_words.push_back(word.toStdString());
     }
 
-    inputFile.close();
+    random_resource_file.close();
 
     std::unordered_set<int> randomIndices;
     while (randomIndices.size() < static_cast<std::size_t>(height * width / 2)) {
