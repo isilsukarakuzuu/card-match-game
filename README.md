@@ -30,14 +30,14 @@ When the program runs, there will be a visual window as an output. There are lab
 
 The project consists of this files:
 ```
-- cmpe230-p3.pro
+- cmpe230-qt.pro
 - main.cpp
 - Shuffle.h
 - MainGameWindow.h
 - GridLayout.h
 - CardButton.h
 ```
-### cmpe230-p3.pro
+### cmpe230-qt.pro
 This “.pro” file contains commands that are required for building the project with qmake. Header, source and resource files are added here. Qt Creator recognizes this like a project description. This file allows Qt Creator to build and run the project.
 main.cpp
 main.cpp is the first file to run. It calls MainGameWindow widget and runs it.
