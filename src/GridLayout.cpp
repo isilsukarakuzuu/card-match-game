@@ -22,7 +22,7 @@ GridLayout::GridLayout(QWidget *parent, int height, int width, int score, int tr
     }
     build();
 
-    connect(match_timer, &QTimer::timeout, this, &GridLayout::match);
+    connect(match_timer, &QTimer::timeout, this, &GridLayout::matchingHandler);
 }
 
 // Resets the score and tries
@@ -52,7 +52,7 @@ void GridLayout::build()
 
 // Checks if the first and second clicked CardButtons match
 // Starts the timer to check for a match
-void GridLayout::click(CardButton *button)
+void GridLayout::clickHandlerForGrid(CardButton *button)
 {
 
     if(first_clicked == nullptr)
@@ -62,11 +62,11 @@ void GridLayout::click(CardButton *button)
     else if (second_clicked == nullptr)
     {
         second_clicked = button;
-        QTimer::singleShot(750, this, &GridLayout::match);
+        QTimer::singleShot(750, this, &GridLayout::matchingHandler);
     }
 }
 
-void GridLayout::match()
+void GridLayout::matchingHandler()
 {
     if(first_clicked == nullptr || second_clicked == nullptr) return;
 

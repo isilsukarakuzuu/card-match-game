@@ -5,12 +5,12 @@
 CardButton::CardButton(QWidget *parent) : QPushButton(parent)
 {
     resetButton();
-    connect(this, &QPushButton::clicked, this, &CardButton::click);
+    connect(this, &QPushButton::clicked, this, &CardButton::clickHandler);
 }
 
 void CardButton::resetButton()
 {
-    setText(QString("               "));
+    setText(QString("                "));
     active = true;
     clicked = false;
     setEnabled(true);
@@ -29,7 +29,7 @@ bool CardButton::clickable()
     return true;
 }
 
-void CardButton::click()
+void CardButton::clickHandler()
 {
     if(!clickable()) return;
 
@@ -37,13 +37,13 @@ void CardButton::click()
 
     clicked = true;
     setText(buttonText);
-    grid->click(this);
+    grid->clickHandlerForGrid(this);
 }
 
 void CardButton::unclick()
 {
     clicked = false;
-    setText(QString("               "));
+    setText(QString("                "));
 }
 
 void CardButton::deactivate()

@@ -18,7 +18,7 @@ public:
     void deactivate();
 
 private slots:
-    void click();
+    void clickHandler();
 
 };
 
