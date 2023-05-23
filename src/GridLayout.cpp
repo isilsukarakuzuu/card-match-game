@@ -2,6 +2,12 @@
 #include "../include/MainGameWindow.h"
 #include "../include/Shuffle.h"
 
+/*
+ * GridLayout constructor
+ * Sets the height, width, score, and tries
+ * Creates the grid layout, creates and connects CardButtons to the grid layout
+ * Connects the timer to the match slot
+ */
 GridLayout::GridLayout(QWidget *parent, int height, int width, int score, int tries)
     : QWidget(parent), height(height), width(width), score(score), tries(tries)
 {
@@ -19,6 +25,8 @@ GridLayout::GridLayout(QWidget *parent, int height, int width, int score, int tr
     connect(match_timer, &QTimer::timeout, this, &GridLayout::match);
 }
 
+// Resets the score and tries
+// Shuffles the words and assigns them to the CardButtons texts
 void GridLayout::build()
 {
     score = 0;
@@ -42,6 +50,8 @@ void GridLayout::build()
     setLayout(layout);
 }
 
+// Checks if the first and second clicked CardButtons match
+// Starts the timer to check for a match
 void GridLayout::click(CardButton *button)
 {
 
@@ -60,6 +70,7 @@ void GridLayout::match()
 {
     if(first_clicked == nullptr || second_clicked == nullptr) return;
 
+    // If the two cards match, deactivate them and increment the score
     if(first_clicked->buttonText == second_clicked->buttonText)
     {
         second_clicked->deactivate();
@@ -67,6 +78,7 @@ void GridLayout::match()
 
         score++;
     }
+    // If the two cards don't match, unclick them
     else
     {
         first_clicked->unclick();
@@ -81,12 +93,13 @@ void GridLayout::match()
     MainGameWindow* mainGameWindow = (MainGameWindow*)parent();
     mainGameWindow->setScoreAndTries();
 
-
+    // win state: all cards are opened
     if(score == height * width / 2)
     {
         mainGameWindow->winGame();
     }
-    if(tries == 0)
+    // lose state: no more tries left
+    else if(tries == 0)
     {
         mainGameWindow->loseGame();
     }

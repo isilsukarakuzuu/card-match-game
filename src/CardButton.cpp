@@ -16,6 +16,8 @@ void CardButton::resetButton()
     setEnabled(true);
 }
 
+
+// A button is clickable if it is active, not clicked, and not one of the first or second clicked button
 bool CardButton::clickable()
 {
     GridLayout* grid = (GridLayout*)parent();

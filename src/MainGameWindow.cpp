@@ -1,5 +1,11 @@
 #include "../include/MainGameWindow.h"
 
+/*
+ * MainGameWindow constructor
+ * Sets the window title, creates the score and tries labels, the new game button, the grid layout, and the top layout
+ * Connects the new game button to the startNewGame slot
+ * Sets the main layout
+ */
 MainGameWindow::MainGameWindow(QWidget *parent) : QWidget(parent)
 {
     setWindowTitle("Card Match Game");
