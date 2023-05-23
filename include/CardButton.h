@@ -20,7 +20,6 @@ public:
 private slots:
     void click();
 
-
 };
 
 #endif // CARDBUTTON_H

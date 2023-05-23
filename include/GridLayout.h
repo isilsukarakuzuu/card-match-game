@@ -30,6 +30,7 @@ public slots:
 private:
     QGridLayout *layout;
     std::vector<std::vector<QString>> cardGrid;
+
 };
 
 #endif // GRIDLAYOUT_H

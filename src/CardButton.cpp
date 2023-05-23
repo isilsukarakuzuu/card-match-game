@@ -2,19 +2,22 @@
 #include "../include/GridLayout.h"
 #include <QMessageBox>
 
-CardButton::CardButton(QWidget *parent) : QPushButton(parent){
+CardButton::CardButton(QWidget *parent) : QPushButton(parent)
+{
     resetButton();
     connect(this, &QPushButton::clicked, this, &CardButton::click);
 }
 
-void CardButton::resetButton() {
+void CardButton::resetButton()
+{
     setText(QString("               "));
     active = true;
     clicked = false;
     setEnabled(true);
 }
 
-bool CardButton::clickable() {
+bool CardButton::clickable()
+{
     GridLayout* grid = (GridLayout*)parent();
 
     if(!active || clicked) return false;
@@ -22,10 +25,10 @@ bool CardButton::clickable() {
     if(grid->second_clicked == this) return false;
     if(grid->first_clicked != nullptr && grid->second_clicked != nullptr) return false;
     return true;
-
 }
 
-void CardButton::click() {
+void CardButton::click()
+{
     if(!clickable()) return;
 
     GridLayout* grid = (GridLayout*)parent();
@@ -35,12 +38,14 @@ void CardButton::click() {
     grid->click(this);
 }
 
-void CardButton::unclick() {
+void CardButton::unclick()
+{
     clicked = false;
     setText(QString("               "));
 }
 
-void CardButton::deactivate() {
+void CardButton::deactivate()
+{
     active = false;
     setEnabled(false);
 }

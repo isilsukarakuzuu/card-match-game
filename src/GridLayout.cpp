@@ -6,8 +6,10 @@ GridLayout::GridLayout(QWidget *parent, int height, int width, int score, int tr
     : QWidget(parent), height(height), width(width), score(score), tries(tries)
 {
     layout = new QGridLayout(this);
-    for (int i = 0; i < height; i++){
-        for(int j = 0; j < width; j++){
+    for (int i = 0; i < height; i++)
+    {
+        for(int j = 0; j < width; j++)
+        {
             CardButton *button = new CardButton(this);
             layout->addWidget(button, i, j);
         }
@@ -27,8 +29,10 @@ void GridLayout::build()
 
     cardGrid = getShuffledWords(height, width);
 
-    for (int i = 0; i < height; i++){
-        for(int j = 0; j < width; j++){
+    for (int i = 0; i < height; i++)
+    {
+        for(int j = 0; j < width; j++)
+        {
             QString strValue = cardGrid[i][j];
             CardButton *button = (CardButton*)layout->itemAtPosition(i, j)->widget();
             button->buttonText = strValue;
@@ -38,27 +42,33 @@ void GridLayout::build()
     setLayout(layout);
 }
 
-void GridLayout::click(CardButton *button) {
+void GridLayout::click(CardButton *button)
+{
 
-    if(first_clicked == nullptr) {
+    if(first_clicked == nullptr)
+    {
         first_clicked = button;
     }
-    else if (second_clicked == nullptr){
+    else if (second_clicked == nullptr)
+    {
         second_clicked = button;
         QTimer::singleShot(750, this, &GridLayout::match);
     }
 }
 
-void GridLayout::match() {
+void GridLayout::match()
+{
     if(first_clicked == nullptr || second_clicked == nullptr) return;
 
-    if(first_clicked->buttonText == second_clicked->buttonText) {
+    if(first_clicked->buttonText == second_clicked->buttonText)
+    {
         second_clicked->deactivate();
         first_clicked->deactivate();
 
         score++;
     }
-    else {
+    else
+    {
         first_clicked->unclick();
         second_clicked->unclick();
     }
@@ -72,18 +82,22 @@ void GridLayout::match() {
     mainGameWindow->setScoreAndTries();
 
 
-    if(score == height * width / 2) {
+    if(score == height * width / 2)
+    {
         mainGameWindow->winGame();
     }
-    if(tries == 0) {
+    if(tries == 0)
+    {
         mainGameWindow->loseGame();
     }
 }
 
 void GridLayout::openAllCards()
 {
-    for (int i = 0; i < height; i++){
-        for(int j = 0; j < width; j++){
+    for (int i = 0; i < height; i++)
+    {
+        for(int j = 0; j < width; j++)
+        {
             CardButton *button = (CardButton*)layout->itemAtPosition(i, j)->widget();
             button->setText(button->buttonText);
             button->setEnabled(false);

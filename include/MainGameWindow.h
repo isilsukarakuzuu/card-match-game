@@ -1,5 +1,6 @@
 #ifndef MAINGAMEWINDOW_H
 #define MAINGAMEWINDOW_H
+
 #include "GridLayout.h"
 #include <QWidget>
 #include <QLabel>
@@ -27,6 +28,7 @@ private:
     GridLayout *gridLayout;
     QHBoxLayout *topLayout;
     std::vector<std::vector<QString>> cardGrid;
+
 };
 
 #endif // MAINGAMEWINDOW_H
