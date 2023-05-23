@@ -2,6 +2,8 @@
 
 MainGameWindow::MainGameWindow(QWidget *parent) : QWidget(parent)
 {
+    setWindowTitle("Card Match Game");
+
     scoreLabel = new QLabel("", this);
     triesLabel = new QLabel("", this);
     newGameButton = new QPushButton("New Game", this);
